@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="notif"
+        android:summary="*****"
+        android:title="Защита паролем">
+    </CheckBoxPreference>
+    <EditTextPreference
+        android:key="address"
+        android:summary="Добавить валюты"
+        android:title="Валюта">
+    </EditTextPreference>
+    <EditTextPreference
+        android:key="address"
+        android:summary=""
+        android:title="Выбрать язык">
+    </EditTextPreference>
+
+    <EditTextPreference
+        android:key="address"
+        android:summary="1"
+        android:title="Начало месяца">
+    </EditTextPreference>
+    <EditTextPreference
+        android:key="address"
+        android:summary="Понедельник"
+        android:title="Начало недели">
+    </EditTextPreference>
+    <CheckBoxPreference
+        android:key="notif"
+        android:summary=""
+        android:title="Платный режим">
+    </CheckBoxPreference>
+    <EditTextPreference
+        android:key="address"
+        android:summary=""
+        android:title="Удалить все">
+    </EditTextPreference>
+</PreferenceScreen>

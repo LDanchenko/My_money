@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MoneyTracker</string>
+    <string name="Sum">Сумма слишком длинная</string>
+    <string name="add_expense">Добавить трату</string>
+    <string name="add_expense_activity">Добавить трату</string>
+    <string name="add_new_category">Добавить категорию</string>
+    <string name="cancel">Отмена</string>
+    <string name="delete">Удалить</string>
+    <string name="enter_amount">Введите сумму</string>
+    <string name="exit">Выход</string>
+    <string name="field">Заполните все поля</string>
+    <string name="have_no_account">Нет акаунта?</string>
+    <string name="log_in">Войти</string>
+    <string name="login">Логин</string>
+    <string name="nav_drawer_exit">Выход</string>
+    <string name="nav_drawer_categories">Категории</string>
+    <string name="nav_drawer_expenses">Расходы</string>
+    <string name="nav_drawer_settings">Настройки</string>
+    <string name="nav_drawer_statistics">Статистика</string>
+    <string name="no_internet">Нет Интернета!</string>
+    <string name="password">Пароль</string>
+    <string name="sign_up"> Зарегистрироваться </string>
+    <string name="wrong_login">Неверный логин</string>
+    <string name="wrong_password">Неверный пароль</string>
+    <string name="unknown_error">Неизвесная ошибка</string>
+    <string name="sign_up_"> Регистрация </string>
+    <string name="log_in_form">Вход</string>
+    <string name="registration">Регистрация</string>
+    <string name="add">Добавить</string>
+    <string name="enter_description">Введите название</string>
+    <string name="select_category">Выберите категорию</string>
+    <string name="date">Дата</string>
+    <string name="search_title">Поиск</string>
+    <string name="pref_enable_foreground_notifications_label">Приоритетность</string>
+    <string name="pref_enable_sound_notifications_label">Звук</string>
+    <string name="pref_enable_notifications_label">Включить уведомления</string>
+    <string name="pref_enable_vibrate_notifications_label">Вибрация</string>
+    <string name="pref_notification_section">Настройка уведомлений</string>
+    <string name="statistic">Статистика по категориям</string>
+    <string name="drawer_income"> Доходы </string>
+</resources>

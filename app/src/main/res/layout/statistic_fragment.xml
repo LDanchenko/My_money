@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Счет"
+        android:textSize="18sp"
+     />
+
+    <Spinner
+        android:id="@+id/account_spiner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toEndOf="@+id/account"  />
+
+    <TextView
+        android:id="@+id/month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Месяц"
+        android:textSize="18sp"
+       android:layout_below="@+id/account"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+ />
+
+    <Spinner
+        android:id="@+id/account_month"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginLeft="25dp"
+
+        android:layout_below="@+id/account_spiner"
+        android:layout_toEndOf="@+id/month" />
+
+    <Button
+        android:id="@+id/okButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="49dp"
+        android:text="Посмотреть статистику"
+        android:textSize="18sp"
+        android:layout_marginBottom="15dp"
+        android:layout_below="@+id/month"
+        android:layout_centerHorizontal="true" />
+
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart"
+        android:layout_below="@+id/okButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

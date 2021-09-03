@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/registration_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/button_margin_vertical"
+        android:text="@string/registration"
+        android:textSize="@dimen/text_view_size"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/enter_login"
+        android:layout_width="@dimen/edit_width_login"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/registration_message"
+        android:layout_marginRight="@dimen/text_view_padding"
+        android:layout_marginTop="@dimen/text_view_padding"
+        android:layout_toEndOf="@+id/password"
+        android:gravity="right"
+        android:maxLength="10" />
+
+    <TextView
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login"
+        android:padding="@dimen/dimen_padding_vertical"
+        android:text="@string/password"
+        android:textSize="@dimen/login_text_size" />
+
+    <EditText
+        android:id="@+id/enter_password"
+        android:layout_width="@dimen/edit_width_login"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/enter_login"
+        android:layout_marginRight="@dimen/edit_margin_vertical"
+        android:layout_marginTop="@dimen/dimen_padding_vertical"
+        android:layout_toEndOf="@id/password"
+        android:gravity="right"
+        android:inputType="textWebPassword"
+        android:maxLength="10"/>
+
+    <Button
+        android:id="@+id/button_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enter_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/button_margin_vertical"
+        android:text="@string/sign_up" />
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/text_view_padding"
+        android:text="@string/login"
+        android:textSize="@dimen/login_text_size"
+        android:layout_below="@+id/registration_message"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="37dp" />
+
+</RelativeLayout>

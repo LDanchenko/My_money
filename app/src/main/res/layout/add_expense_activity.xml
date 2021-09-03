@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/add_expenses"
+    android:theme="@style/AddActivity"
+    android:padding="@dimen/add_expense_layout_padding">
+
+        <TextView
+    android:layout_width="@dimen/text_width"
+    android:layout_height="wrap_content"
+    android:id="@+id/text_sum"
+    android:text="Сумма"
+    android:layout_marginTop="35dp"/>
+
+    <EditText
+        android:layout_width="@dimen/edit_width"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/text_sum"
+        android:layout_marginTop="23dp"
+        android:inputType="numberDecimal"
+        android:maxLength="10"
+        android:id="@+id/expense_sum" />
+
+    <TextView
+        android:layout_width="@dimen/text_width"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_description"
+        android:layout_marginTop="@dimen/text_margin_top"
+        android:layout_below="@id/text_sum"
+        android:text="Название"/>
+
+    <EditText
+        android:layout_width="@dimen/edit_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/expense_margin_top"
+        android:maxLength="25"
+        android:layout_toRightOf="@id/text_sum"
+        android:layout_below="@+id/expense_sum"
+        android:id="@+id/expense_description"
+        />
+    <TextView
+        android:layout_width="@dimen/text_width"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_spinner"
+        android:layout_marginTop="@dimen/text_margin_top"
+        android:layout_below="@id/text_description"
+        android:text="Категория"/>
+
+    <Spinner
+        android:layout_width="@dimen/edit_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expense_description"
+        android:layout_marginTop="45dp"
+        android:layout_toRightOf="@id/text_description"
+        android:id="@+id/spinner">
+
+    </Spinner>
+<TextView
+    android:layout_width="@dimen/text_width"
+    android:layout_height="wrap_content"
+    android:id="@+id/text_spinner_account"
+    android:layout_marginTop="45dp"
+    android:text="Счет"
+    android:layout_below="@+id/spinner"
+    android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="@dimen/edit_width"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_account"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/spinner"
+        android:layout_toRightOf="@id/text_spinner_account"
+     >
+
+    </Spinner>
+
+    <TextView
+        android:layout_width="@dimen/text_width"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_date"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/text_spinner_account"
+        android:text="@string/date"/>
+
+    <TextView
+    android:layout_width="@dimen/edit_width"
+    android:layout_height="wrap_content"
+        android:id="@+id/date"
+        android:layout_marginTop="36dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/spinner_account"
+        android:layout_toRightOf="@id/text_date" />
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="25dp"
+    android:layout_below="@+id/text_date"
+    android:layout_alignParentEnd="true"
+    android:layout_marginEnd="10dp">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:id="@+id/cancel"
+        android:textSize="18sp"
+        android:background="@color/background_color"
+        android:layout_weight="1"
+        android:text="@string/cancel"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/add"
+        android:layout_margin="12dp"
+        android:textSize="18sp"
+        android:background="@color/background_color"
+        android:layout_weight="1"
+        android:text="@string/add"
+        />
+
+</LinearLayout>
+
+
+</RelativeLayout>

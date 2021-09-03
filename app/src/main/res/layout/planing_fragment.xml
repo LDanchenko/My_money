@@ -1,0 +1,160 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/expenses_fragment_root_layout">
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_plus_black_24dp"
+        android:id="@+id/floating_button_planing"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_behavior="com.ldv.money_tracker.utils.ScrollAwareFABBehavior"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Выберите счет и месяц для того, чтобы найти план по нему"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="25dp"
+            android:text="Счет"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/account_spiner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="17dp"
+            android:layout_below="@+id/textView2"
+            android:layout_toEndOf="@+id/account"
+             />
+
+        <TextView
+            android:id="@+id/month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Месяц"
+            android:textSize="18sp"
+            android:layout_below="@+id/account"
+            android:layout_marginTop="30dp" />
+
+        <Spinner
+            android:id="@+id/account_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:textSize="18sp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="17dp"
+            android:layout_below="@+id/account_spiner"
+            android:layout_toEndOf="@+id/month" />
+
+        <Button
+            android:id="@+id/okButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/account_month"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:text="Найти план"
+            android:textSize="18sp" />
+
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/okButton"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/opis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line1"
+            android:gravity="center"
+            android:text="Для редактирования нажмите на поле планирования, введите сумму и сохраните"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/opis1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/spent"
+            android:layout_alignBottom="@+id/spent"
+            android:layout_alignStart="@+id/textView"
+            android:layout_marginLeft="10dp"
+            android:text="Потрачено за месяц"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/plan"
+            android:layout_alignBottom="@+id/plan"
+            android:layout_alignEnd="@+id/save"
+            android:layout_marginLeft="10dp"
+            android:text="Запланировано потратить"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/plan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/opis"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="36dp"
+            android:layout_toEndOf="@+id/textView"
+            android:inputType="numberDecimal"
+            android:text="запланировано"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/spent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/plan"
+            android:layout_below="@+id/plan"
+            android:layout_marginTop="40dp"
+            android:text="Потрачено"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сохранить"
+            android:layout_below="@+id/spent"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,231 @@
+package com.ldv.money_tracker.ui.fragments;
+
+import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
+import android.content.Context;
+import android.os.Build;
+import android.support.annotation.FloatRange;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.ldv.money_tracker.R;
+import com.ldv.money_tracker.storage.entities.AccountsEntity;
+import com.ldv.money_tracker.storage.entities.IncomeEntity;
+import com.ldv.money_tracker.storage.entities.IncomeType;
+import com.ldv.money_tracker.ui.fragments.adapters.AccountsSpinnerAdapter;
+import com.ldv.money_tracker.ui.fragments.adapters.IncomeTypeSpinnerAdapter;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.TimeZone;
+
+@TargetApi(Build.VERSION_CODES.M)
+@EActivity(R.layout.add_income_activity)//вывод активити
+public class AddIncomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    @ViewById(R.id.income_sum)
+    EditText edit_text_sum;
+
+    @ViewById(R.id.spinner_income)
+    Spinner spinner_income;
+
+    @ViewById(R.id.spinner_account)
+    Spinner spinner_account;
+
+    @ViewById(R.id.add)
+    Button button_add;
+
+    @ViewById(R.id.cancel)
+    Button button_cancel;
+
+
+
+    @ViewById(R.id.date)
+    EditText edit_text_date;
+
+
+    long incomeId;
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @AfterViews
+    void ready() {
+
+
+        //обработали спинер
+        showSpinner(spinner_income);
+        showSpinnerAccount(spinner_account);
+
+        //тут передаем текущую дату в едит текст
+        showDate(edit_text_date);
+
+
+        edit_text_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+
+                DatePickerDialog dialog = new DatePickerDialog(AddIncomeActivity.this, myCallBack,
+                        calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH));
+
+
+
+
+                dialog.show();
+
+            }
+        });
+
+        button_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //проверилина пустоту два поля
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+
+                String sum = edit_text_sum.getText().toString();
+                String date = edit_text_date.getText().toString();
+
+                if ( sum.length() == 0) {
+                    CharSequence text = getString(R.string.field);
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                } else {
+                    generateIncome(sum, date);
+
+                    finish();
+                }
+            }
+        });
+
+
+        button_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+//если нажата кнопка кансел просто закрываем активити - отменяем добавление траты
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.enter_fade_in,R.anim.exit_push_out);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)//вывод даты в едит
+    public void showDate(EditText editText) {
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String strDate = sdf.format(c.getTime());
+        editText.setText(strDate);
+
+    }
+
+    public void showSpinner(Spinner spinner) {//подключения списка к спинеру
+
+        List<IncomeType> incomeTypes = new ArrayList<IncomeType>();//создали список
+        incomeTypes.addAll(IncomeType.selectAll(""));//добавили в него все элементы из таблицы
+        IncomeTypeSpinnerAdapter incomeTypeSpinnerAdapter = new IncomeTypeSpinnerAdapter(this, incomeTypes);//создали экзмплярсвоего адаптера, в него занесли свой лист
+        incomeTypeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);//тут передаем данные в эти спинер айтемы
+        incomeTypeSpinnerAdapter.notifyDataSetChanged();//если обновляются данные в таблице, то и в спинере
+        spinner.setAdapter(incomeTypeSpinnerAdapter);//повесили адаптер
+        spinner.setOnItemSelectedListener(this);//повесили слушатель
+    }
+
+    public void showSpinnerAccount(Spinner spinner) {//подключения списка к спинеру
+
+        List<AccountsEntity> accountsEntities = new ArrayList<AccountsEntity>();//создали список
+        accountsEntities.addAll(AccountsEntity.selectAll(""));//добавили в него все элементы из таблицы
+        AccountsSpinnerAdapter accountsSpinnerAdapter = new AccountsSpinnerAdapter(this, accountsEntities);//создали экзмплярсвоего адаптера, в него занесли свой лист
+        accountsSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);//тут передаем данные в эти спинер айтемы
+        accountsSpinnerAdapter.notifyDataSetChanged();//если обновляются данные в таблице, то и в спинере
+        spinner.setAdapter(accountsSpinnerAdapter);//повесили адаптер
+        spinner.setOnItemSelectedListener(this);//повесили слушатель
+
+    }
+
+    private void generateIncome(String sum,  String date) { //тут вставляем в базу данных даные по тратам
+
+
+
+       // IncomeType incomeTypes = IncomeType.selectAll("Депозиты");
+        ///Log.d("list", incomeTypes.toString());
+        IncomeEntity incomeEntity = new IncomeEntity();
+      //  incomeEntity.setName(description);//передали имя
+      //  Log.d("description", incomeEntity.getName().toString());
+//        Log.d("cost", incomeEntity.getCost().toString());
+        incomeEntity.setDate(date);//передать дату
+        IncomeType incomeType = (IncomeType) spinner_income.getSelectedItem();
+        Log.d("type", incomeType.getTypeName().toString());
+         //экземпляр с id выбраного элемента спинера
+        incomeEntity.setType(incomeType);
+        incomeEntity.setName(incomeType.getTypeName().toString());
+       // String g = incomeType.toString();
+
+        AccountsEntity  accountsEntity = (AccountsEntity) spinner_account.getSelectedItem();
+        incomeEntity.setAccount(accountsEntity);
+
+        //экземпляр с id выбраного элемента спинера
+        //тут сумму считаем
+ float count = Float.parseFloat(accountsEntity.getAccountCount()); //считаем сколько было на счету
+        float plus = Float.parseFloat(sum) + count;
+        accountsEntity.setAccountCount(Float.toString(plus));
+        accountsEntity.save();
+        incomeEntity.setCost(sum);//передали трату
+        incomeId = incomeType.getId();
+                //записали категорию, такой метод с
+        incomeEntity.save();
+        //записали категорию, такой метод сет категори, принимает обьект типа категории, а в адаптере сетит имя
+
+    }
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+    DatePickerDialog.OnDateSetListener myCallBack = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            String _years = Integer.toString(year);
+            String _months = Integer.toString(month + 1);
+            if (_months.length() == 1) {
+                _months = "0" + _months;
+            }
+            String _days = Integer.toString(dayOfMonth);
+            if (_days.length() == 1) {
+                _days = "0" + _days;
+            }
+            String query = _days + "-" + _months + "-" + _years;
+
+//            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+  //          String strDate = sdf.format(query);
+            edit_text_date.setText(query);
+
+        }
+    };
+}

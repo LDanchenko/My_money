@@ -1,0 +1,143 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ldv.money_tracker">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Permissions required by the sync adapter -->
+    <uses-permission
+        android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission
+        android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission
+        android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/wallet"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:name=".MoneyTrackerApplication"
+        >
+
+
+        <meta-data android:name="AA_DB_NAME" android:value="MoneyTracker.db" />
+        <meta-data android:name="AA_DB_VERSION" android:value="6" />
+        <meta-data
+            android:name="AA_MODELS"
+            android:value="com.ldv.money_tracker.storage.entities.ExpenseEntity, com.ldv.money_tracker.storage.entities.Planing, com.ldv.money_tracker.storage.entities.Currency, com.ldv.money_tracker.storage.entities.AccountsEntity, com.ldv.money_tracker.storage.entities.CategoryEntity, com.ldv.money_tracker.storage.entities.IncomeEntity,
+com.ldv.money_tracker.storage.entities.IncomeType" />
+
+
+        <activity
+            android:name=".ui.fragments.MainActivity_"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".ui.fragments.SplashScreenActivity_"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+
+    <activity android:name=".ui.fragments.RegistrationActivity_"
+        android:theme="@style/AppTheme.NoActionBar">
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.DEFAULT"/>
+        </intent-filter>
+
+    </activity>
+
+        <activity android:name=".ui.fragments.LoginActivity_"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+        </activity>
+
+
+        <activity android:name=".ui.fragments.AddExpenseActivity_"
+            android:parentActivityName=".ui.fragments.MainActivity"
+            android:label="@string/add_expense_activity"
+            />
+
+        <activity android:name=".ui.fragments.AddPlaning_"
+            android:parentActivityName=".ui.fragments.MainActivity"
+            android:label="Планирование"
+            />
+
+        <activity android:name=".ui.fragments.IncomeFiltrActivity_"
+            android:parentActivityName=".ui.fragments.MainActivity"
+            android:label="Income"
+            />
+
+        <activity android:name=".ui.fragments.Calendar_class"
+            android:parentActivityName=".ui.fragments.MainActivity"
+            android:label="Income"
+            />
+        <activity android:name=".ui.fragments.AddIncomeActivity_"
+            android:parentActivityName=".ui.fragments.MainActivity"
+            android:label="@string/add_income_activity"
+            /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+
+        <provider
+            android:name=".sync.StubContentProvider"
+            android:authorities="@string/content_authority"
+        android:syncable="true"
+        android:exported="false"/>
+
+        <service
+            android:name=".sync.TrackerAuthenticatorService"
+            android:exported="false">
+            <intent-filter>
+                <action
+                    android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <service
+            android:name=".sync.TrackerSyncService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+
+        <service
+            android:name=".notification.ServiceSample"
+            android:enabled="true"/>
+
+    </application>
+
+
+</manifest>

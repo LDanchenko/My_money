@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_month"
+        android:orderInCategory="100"
+        android:title="Поиск за месяц"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_day"
+        android:orderInCategory="100"
+        android:title="Поиск за день"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/account"
+        android:orderInCategory="100"
+        android:title="Поиск по счетам"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/type"
+        android:orderInCategory="100"
+        android:title="Поиск по типу"
+        app:showAsAction="never"/>
+
+
+    <item
+        android:id="@+id/action_cat2"
+        android:orderInCategory="100"
+        android:title="Добавить тип доходов"
+        app:showAsAction="never"/>
+</menu>
